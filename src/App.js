@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Todos from './Todos';
+import AddToDo from './AddToDo'
+
+const ids= [1, 2];
 
 class App extends Component {
   state = {
     todos: [
-      { id: 1, content: 'buy some milk' },
-      { id: 2, content: 'finish react project' }
+      { id: ids[0], content: 'buy some milk' },
+      { id: ids[1], content: 'finish react project' }
     ]
   }
-
+  //  Function deletes a todo item
   deleteToDo = (id) => {
     const todos = this.state.todos.filter(todo => {
       return todo.id !== id
@@ -18,6 +21,20 @@ class App extends Component {
       todos
     })
   }
+  //  Function adds a todo item
+  addToDo = (todo) => {
+    //  pushing a new id to the ids array
+    ids.push(ids.length +1);
+    //  setting the new created id as the new todo item's id
+    todo.id = ids.length;
+    //  Using the spread operator to spread the items of the current todolist into a new array of todos
+    //  and adding the new todo item to the end of that array
+    let newTodos = [...this.state.todos, todo];
+    this.setState({
+      todos: newTodos
+    })
+  }
+
   render() {
     return (
       <div className="todo-app  container">
@@ -25,6 +42,7 @@ class App extends Component {
         {/* component todos with props "todos" and deleteToDo*/}
         {/* passing props in here gives us access to the props in the corresponding component */}
         <Todos todos={this.state.todos} deleteToDo = {this.deleteToDo}/>
+        <AddToDo addToDo={this.addToDo}/>
       </div>
     );
   }
