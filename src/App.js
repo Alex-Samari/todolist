@@ -39,10 +39,12 @@ class App extends Component {
     return (
       <div className="todo-app  container">
         <h1 className="center blue-text">Todos</h1>
+        {/*Adding a new todo item*/}
+        <AddToDo addToDo={this.addToDo}/>
         {/* component todos with props "todos" and deleteToDo*/}
         {/* passing props in here gives us access to the props in the corresponding component */}
         <Todos todos={this.state.todos} deleteToDo = {this.deleteToDo}/>
-        <AddToDo addToDo={this.addToDo}/>
+        
       </div>
     );
   }

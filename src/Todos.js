@@ -9,13 +9,15 @@ const Todos = ({todos, deleteToDo}) => {
             return (
                 //  colletion-item class is a materialize.css class
                 <div className="collection-item" key={todo.id}>
-                    {/* Wrapping the deleteToDo function in an anonymous function is necessary otherwise
-                    the deleteToDo fires up everytime a toDoList is created */}
-                    <span onClick={() => {deleteToDo(todo.id)}}>{todo.content}</span>
+                    {/* Wrapping the deleteToDo function in an anonymous function is necessary otherwise the deleteToDo fires up everytime a toDoList is created */}
+                    <span  onClick={() => {deleteToDo(todo.id)}}>{todo.content} 
+                        <button className="red lighten-1 btn-small right">Delete ToDo</button> 
+                    </span>
                 </div>
             )
         })
     ) : (
+        //  Show this message if there are NO todos available
         <p className="center">You have no todos left</p>
     )
     return (
